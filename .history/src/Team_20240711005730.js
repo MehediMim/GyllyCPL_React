@@ -1,0 +1,188 @@
+import React, { Fragment, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Syndicate from "./TeamLogo/Syndicate.png"
+import NM69 from "./TeamLogo/NM69.png"
+import Gladiators from "./TeamLogo/Gladiators.png"
+import Mavericks from "./TeamLogo/Mavericks.png"
+import MachineGun from "./TeamLogo/MachineGun.png"
+import ShotGun from "./TeamLogo/ShotGun.png"
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAnglesDown, faAnglesUp } from '@fortawesome/free-solid-svg-icons'
+
+
+const divs = [
+    ["NAKIB ARMAN", "NOOBMASTER69", NM69, "#C97925"],
+    ["SHAHRIAR KABIR", "GULLY GLADIATORS", Gladiators, "#3C3C3B"],
+    ["ZUBAER JAHIN", "SHOTGUN", ShotGun, "#EFBF46"],
+    ["FAHIM SIAM", "MACHINEGUN", MachineGun, "#5687A8"],
+    ["MARUF ALLAM", "MAVERICKS", Mavericks, "#6A0000"],
+    ["ABDULLAH MOURSHED", "SYNDICATE", Syndicate, "#266B63"],
+];
+const players = [
+    [
+        ["Md. Atakad Billah Hemel", "ALLROUNDER", "30500"],
+        ["Anupam Pal", "ALLROUNDER", "2000"],
+        ["Seeum Ahmed", "BATSMAN", "2000"],
+        ["Aiman Khan", "BATSMAN", "4000"],
+        ["Kaosar Kabbo", "ALLROUNDER", "2000"],
+        ["Nurunnobi Rahman", "WICKETKEEPER BATSMAN", "46000"],
+        ["Hassin Arman Nihal", "ALLROUNDER", "4000"],
+        ["Md Arif Arman", "ALLROUNDER", "2000"],
+        ["Arif Almas Rahman", "ALLROUNDER", "2000"],
+        ["Soumya Jabid Prinon", "BATSMAN", "3000"],
+        ["Mostofa Rafith", "ALLROUNDER", "2000"],
+    ],
+    [
+        ["Md. Atakad Billah Hemel", "ALLROUNDER", "30500"],
+        ["Anupam Pal", "ALLROUNDER", "2000"],
+        ["Seeum Ahmed", "BATSMAN", "2000"],
+        ["Aiman Khan", "BATSMAN", "4000"],
+        ["Kaosar Kabbo", "ALLROUNDER", "2000"],
+        ["Nurunnobi Rahman", "WICKETKEEPER BATSMAN", "46000"],
+        ["Hassin Arman Nihal", "ALLROUNDER", "4000"],
+        ["Md Arif Arman", "ALLROUNDER", "2000"],
+        ["Arif Almas Rahman", "ALLROUNDER", "2000"],
+        ["Soumya Jabid Prinon", "BATSMAN", "3000"],
+        ["Mostofa Rafith", "ALLROUNDER", "2000"],
+    ],
+    [
+        ["Md. Atakad Billah Hemel", "ALLROUNDER", "30500"],
+        ["Anupam Pal", "ALLROUNDER", "2000"],
+        ["Seeum Ahmed", "BATSMAN", "2000"],
+        ["Aiman Khan", "BATSMAN", "4000"],
+        ["Kaosar Kabbo", "ALLROUNDER", "2000"],
+        ["Nurunnobi Rahman", "WICKETKEEPER BATSMAN", "46000"],
+        ["Hassin Arman Nihal", "ALLROUNDER", "4000"],
+        ["Md Arif Arman", "ALLROUNDER", "2000"],
+        ["Arif Almas Rahman", "ALLROUNDER", "2000"],
+        ["Soumya Jabid Prinon", "BATSMAN", "3000"],
+        ["Mostofa Rafith", "ALLROUNDER", "2000"],
+    ],
+    [
+        ["Wasif Hasan", "All Rounder", "11500"]
+        ["Adnan Hossain Zudan", "Batsman", "6000"]
+        ["Robiul Islam Hasib", "All Rounder", "20500"]
+        ["Rubayat Mukit", "All Rounder", "4000"]
+        ["Noadir Arko", "Wicketkeeper-Batsman", "3000"]
+        ["Shadman Tasan", "Batsman", "11500"]
+        ["Naime Muhammad ", "Wicketkeeper-Batsman", "3000"]
+        ["Parthosarathi Sarkar", "AllRounder", "15000"]
+        ["Dipon Roy", "AlRounder", "7000"]
+        ["Sakib Abedin Tamim", "All Rounder", "6500"]
+        ["Fz Rabby", "All Rounder", "10000"]
+    ],
+    [
+        ["Md. Atakad Billah Hemel", "ALLROUNDER", "30500"],
+        ["Anupam Pal", "ALLROUNDER", "2000"],
+        ["Seeum Ahmed", "BATSMAN", "2000"],
+        ["Aiman Khan", "BATSMAN", "4000"],
+        ["Kaosar Kabbo", "ALLROUNDER", "2000"],
+        ["Nurunnobi Rahman", "WICKETKEEPER BATSMAN", "46000"],
+        ["Hassin Arman Nihal", "ALLROUNDER", "4000"],
+        ["Md Arif Arman", "ALLROUNDER", "2000"],
+        ["Arif Almas Rahman", "ALLROUNDER", "2000"],
+        ["Soumya Jabid Prinon", "BATSMAN", "3000"],
+        ["Mostofa Rafith", "ALLROUNDER", "2000"],
+    ],
+    [
+        ["Md. Atakad Billah Hemel", "ALLROUNDER", "30500"],
+        ["Anupam Pal", "ALLROUNDER", "2000"],
+        ["Seeum Ahmed", "BATSMAN", "2000"],
+        ["Aiman Khan", "BATSMAN", "4000"],
+        ["Kaosar Kabbo", "ALLROUNDER", "2000"],
+        ["Nurunnobi Rahman", "WICKETKEEPER -BATSMAN", "46000"],
+        ["Hassin Arman Nihal", "ALLROUNDER", "4000"],
+        ["Md Arif Arman", "ALLROUNDER", "2000"],
+        ["Arif Almas Rahman", "ALLROUNDER", "2000"],
+        ["Soumya Jabid Prinon", "BATSMAN", "3000"],
+        ["Mostofa Rafith", "ALLROUNDER", "2000"],
+    ],
+
+]
+
+
+const ParticularTeam = (props) => {
+    const [variable, setvariable] = useState(false);
+    const funct = () => {
+        setvariable(!variable);
+    }
+    return (
+        <div className='' style={{ backgroundColor: props.team[3] }}>
+
+            <div className='text-white justify-between flex items-center font-Saira px-6 md:px-20 text-4xl py-20'>
+                <div>{props.team[1]}</div>
+                <div>
+                    {!variable &&
+                        <button onClick={funct}>
+                            <FontAwesomeIcon icon={faAnglesDown} size="xl" style={{ color: "#ffffff", }} />
+                        </button>
+                    }
+                    {variable &&
+                        <button onClick={funct}>
+                            <FontAwesomeIcon icon={faAnglesUp} size="xl" style={{ color: "#ffffff", }} />
+                        </button>
+                    }
+                </div>
+            </div>
+            {variable &&
+                <div className='relative  overflow-x-hidden'>
+                    <div className=' flex'>
+
+                        <div className='w-3/4  pl-20 '>
+                            <div className='text-white '>
+                                <div className='font-Titillium text-2xl'>CAPTAIN</div>
+                                <div className='font-Saira text-6xl'>{props.team[0]}</div>
+                            </div>
+                        </div>
+                        <div className='w-1/2   mr-32'><div className='w-2/3'><img src={props.team[2]}></img></div>
+                        </div>
+                    </div>
+                    <div className='flex top-0 opacity-10 absolute left-20'>
+                        <div className='text-9xl font-Saira'>{props.team[1]}</div>
+                        <div><img src={props.team[2]}></img></div>
+                    </div>
+
+                    <div className='pl-20   w-3/4 '>
+                        <div className='flex justify-between w-2/3 pb-4'>
+                            <div className='font-Titillium text-white text-2xl'>CURRENT SQUAD</div>
+                            <div className='font-Titillium text-white text-2xl'>VALUE</div>
+                        </div>
+                        <div>
+                            {
+                                props.squad.map((player, key) => (
+                                    <div>
+                                        <div className=' relative  my-1'>
+                                            <div className='flex  w-2/3 justify-between items-center'>
+                                                <div className='text-white  font-body text-5xl'>{player[0]}</div>
+                                                <div className='text-white  bottom-4 font-Saira text-2xl'> {player[2]}</div>
+                                            </div>
+                                            <div className='text-white relative bottom-4 font-Titillium text-2xl'>{player[1]}</div>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    )
+}
+
+const Team = () => {
+    return (
+        <Fragment>
+            <div className='pt-20 bg-slate-900'>
+                {
+                    divs.map((team, key) => (
+                        <div>
+                            <ParticularTeam team={team} squad={players[key]} />
+                        </div>
+                    ))
+                }
+            </div>
+        </Fragment>
+    )
+}
+export default Team;
